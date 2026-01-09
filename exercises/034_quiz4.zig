@@ -9,10 +9,10 @@ const std = @import("std");
 
 const NumError = error{IllegalNumber};
 
-pub fn main() void {
+pub fn main() !void {
     var stdout = std.fs.File.stdout().writer(&.{});
 
-    const my_num: u32 = getNumber();
+    const my_num: u32 = try getNumber();
 
     try stdout.interface.print("my_num={}\n", .{my_num});
 }
