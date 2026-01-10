@@ -82,46 +82,46 @@ sudo ln -sf "/usr/local/$(basename "$ZIG_DIR")/zig" /usr/local/bin/zig
 echo "Zig installed successfully!"
 zig version
 
-# Build and install ZLS from source
-echo ""
-echo "=== Building ZLS from source ==="
-echo "Note: ZLS master builds are not pre-compiled, building from source..."
+# # Build and install ZLS from source
+# echo ""
+# echo "=== Building ZLS from source ==="
+# echo "Note: ZLS master builds are not pre-compiled, building from source..."
 
-# Check if git is available
-if ! command -v git &> /dev/null; then
-    echo "Error: git is required to build ZLS"
-    echo "Skipping ZLS installation"
-else
-    echo "Cloning ZLS repository..."
-    git clone --depth 1 https://github.com/zigtools/zls.git
+# # Check if git is available
+# if ! command -v git &> /dev/null; then
+#     echo "Error: git is required to build ZLS"
+#     echo "Skipping ZLS installation"
+# else
+#     echo "Cloning ZLS repository..."
+#     git clone --depth 1 https://github.com/zigtools/zls.git
     
-    cd zls
+#     cd zls
     
-    echo "Building ZLS with newly installed Zig..."
-    /usr/local/bin/zig build -Doptimize=ReleaseSafe
+#     echo "Building ZLS with newly installed Zig..."
+#     /usr/local/bin/zig build -Doptimize=ReleaseSafe
     
-    # Find the built binary
-    ZLS_BIN=$(find zig-out/bin -name "zls" -type f 2>/dev/null | head -n1)
+#     # Find the built binary
+#     ZLS_BIN=$(find zig-out/bin -name "zls" -type f 2>/dev/null | head -n1)
     
-    if [ -n "$ZLS_BIN" ] && [ -f "$ZLS_BIN" ]; then
-        echo "Installing ZLS to /usr/local/bin..."
-        sudo cp "$ZLS_BIN" /usr/local/bin/zls
-        sudo chmod +x /usr/local/bin/zls
-        echo "ZLS built and installed successfully!"
-        /usr/local/bin/zls --version || echo "ZLS installed (version info not available)"
-    else
-        echo "Warning: Could not find ZLS binary after build"
-        echo "You may need to build ZLS manually from: https://github.com/zigtools/zls"
-    fi
+#     if [ -n "$ZLS_BIN" ] && [ -f "$ZLS_BIN" ]; then
+#         echo "Installing ZLS to /usr/local/bin..."
+#         sudo cp "$ZLS_BIN" /usr/local/bin/zls
+#         sudo chmod +x /usr/local/bin/zls
+#         echo "ZLS built and installed successfully!"
+#         /usr/local/bin/zls --version || echo "ZLS installed (version info not available)"
+#     else
+#         echo "Warning: Could not find ZLS binary after build"
+#         echo "You may need to build ZLS manually from: https://github.com/zigtools/zls"
+#     fi
     
-    cd ..
-fi
+#     cd ..
+# fi
 
-# Cleanup happens automatically via trap
+# # Cleanup happens automatically via trap
 
-echo ""
+# echo ""
 echo "=== Installation complete! ==="
 echo "Zig: $(zig version)"
-echo "ZLS: $(which zls)"
-echo ""
-echo "Note: You may need to restart your editor/IDE to use the new ZLS."
+# echo "ZLS: $(which zls)"
+# echo ""
+# echo "Note: You may need to restart your editor/IDE to use the new ZLS."
